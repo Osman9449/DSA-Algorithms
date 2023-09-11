@@ -74,7 +74,7 @@ public class LinkedList {
         return temp; // removed element
     }
 
-    public void append(int value) {
+    public void addNodeToTail(int value) {
         Node newNode = new Node(value);
         if (length == 0) {
             head = newNode;
@@ -86,7 +86,7 @@ public class LinkedList {
         length++;
     }
 
-    public void prepend(int value) {
+    public void addNodeToHead(int value) {
         Node newNode = new Node(value);
         if (length == 0) {
             head = newNode;
@@ -120,11 +120,11 @@ public class LinkedList {
     public boolean insert (int index, int value)  {
         if (index < 0 || index > length) return false;
         if (index == 0) {
-            prepend(value);
+            addNodeToHead(value);
             return true;
         }
         if (index == length) {
-            append(value);
+            addNodeToTail(value);
             return true;
         }
         Node newNode = new Node(value);
@@ -147,6 +147,19 @@ public class LinkedList {
         length--;
         return temp;
     }
+    public void reverse() {
+        Node temp = head;
+        head = tail;
+        tail = temp;
+        Node after = temp.next;
+        Node before = null;
 
+        for (int i = 0; i < length; i++) {
+            after = temp.next;
+            temp.next = before;
+            before = temp;
+            temp = after;
+        }
 
+    }
 }
