@@ -62,6 +62,7 @@ public class LinkedList {
         }
         return temp;
     }
+
     public Node removeFirst() {// return first element
         if (length == 0) return null;
         Node temp = head;
@@ -108,16 +109,17 @@ public class LinkedList {
         }
         return temp;
     }
-    public boolean set (int index ,int value){
+
+    public boolean set(int index, int value) {
         Node temp = get(index);
-        if(temp == null){
+        if (temp == null) {
             return false;
         }
-        temp.value=value;
+        temp.value = value;
         return true;
     }
 
-    public boolean insert (int index, int value)  {
+    public boolean insert(int index, int value) {
         if (index < 0 || index > length) return false;
         if (index == 0) {
             addNodeToHead(value);
@@ -134,6 +136,7 @@ public class LinkedList {
         length++;
         return true;
     }
+
     public Node remove(int index) {  // return removed node
         if (index < 0 || index >= length) return null;
         if (index == 0) return removeFirst();
@@ -147,6 +150,7 @@ public class LinkedList {
         length--;
         return temp;
     }
+
     public void reverse() {
         Node temp = head;
         head = tail;
@@ -160,6 +164,15 @@ public class LinkedList {
             before = temp;
             temp = after;
         }
+    }
+    public Node findMiddleNode() { //Floyd's Tortoise
+        Node slow = head;
+        Node fast = head;
 
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
     }
 }
